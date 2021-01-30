@@ -1,15 +1,13 @@
 require('dotenv').config();
 const validUrl = require('valid-url');
 const shortid = require('shortid');
-const config = require('config');
+const Url = require('../models/url');
 
-// const Url = require('../models/url_model');
-const Url = require('../models/conn');
+const baseUrl = process.env.BASEURL;
 
+// Create shorten url
 const createShortenURL = async (req, res) => {
   const { longUrl } = req.body;
-  // const baseUrl = config.get('baseUrl');
-  const baseUrl = process.env.BASEURL;
 
   // Check base url
   if (!validUrl.isUri(baseUrl)) {
@@ -49,6 +47,23 @@ const createShortenURL = async (req, res) => {
   }
 };
 
+// Get long url from shorten url
+const getLongURL = async (req, res) => {
+  try {
+    const url = await Url.findOne({ urlCode: req.params.code });
+
+    if (url) {
+      return res.redirect(url.longUrl);
+    } else {
+      return res.status(404).json('No url found');
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json('Server error');
+  }
+};
+
 module.exports = {
-    createShortenURL
+    createShortenURL,
+    getLongURL
 };

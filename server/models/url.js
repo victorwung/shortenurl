@@ -7,4 +7,4 @@ const urlSchema = new mongoose.Schema({
   date: { type: String, default: Date.now }
 });
 
-module.exports = mongoose.model('myurl', urlSchema);
+module.exports = mongoose.model('url', urlSchema);
