@@ -3,34 +3,34 @@ const validUrl = require('valid-url');
 const shortid = require('shortid');
 const Url = require('../models/url');
 
-const baseUrl = process.env.BASEURL;
+const base_url = process.env.BASEURL;
 
 // Create shorten url
 const createShortenURL = async (req, res) => {
-  const { longUrl } = req.body;
+  const { long_url } = req.body;
 
   // Check base url
-  if (!validUrl.isUri(baseUrl)) {
+  if (!validUrl.isUri(base_url)) {
     return res.status(401).json('Invalid base url');
   }
 
   // Create url code
-  const urlCode = shortid.generate();
+  const url_code = shortid.generate();
 
   // Check long url
-  if (validUrl.isUri(longUrl)) {
+  if (validUrl.isUri(long_url)) {
     try {
-      let url = await Url.findOne({ longUrl });
+      let url = await Url.findOne({ long_url });
 
       if (url) {
         res.json(url);
       } else {
-        const shortUrl = baseUrl + '/' + urlCode;
+        const short_url = base_url + '/' + url_code;
 
         url = new Url({
-          longUrl,
-          shortUrl,
-          urlCode,
+          long_url,
+          short_url,
+          url_code,
           date: new Date()
         });
 
@@ -50,10 +50,12 @@ const createShortenURL = async (req, res) => {
 // Get long url from shorten url
 const getLongURL = async (req, res) => {
   try {
-    const url = await Url.findOne({ urlCode: req.params.code });
+    const url = await Url.findOne({ url_code: req.params.code });
 
     if (url) {
-      return res.redirect(url.longUrl);
+      url.click++; 
+      await url.save();
+      return res.redirect(url.long_url);
     } else {
       return res.status(404).json('No url found');
     }
