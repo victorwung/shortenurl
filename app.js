@@ -18,6 +18,10 @@ app.use(
     ]
 );
 
+app.get('/', (req, res) => {
+  res.send('Hello Shorten URL!');
+})
+
 // Page not found
 app.use(function(req, res, next) {
   res.status(404).sendFile(__dirname + '/public/404.html');
