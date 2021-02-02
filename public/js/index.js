@@ -5,7 +5,7 @@ function shortenURL() {
   } else {
     axios.post('/api/url/shorten',{long_url: long_url})
       .then(res=> {
-        if(res.status === 200 || res.data.short_url) {
+        if(res.status === 200 && res.data.short_url) {
           Swal.fire('The shortened URL',`${res.data.short_url}`).then((result) => {
             if (result.isConfirmed) {
               document.querySelector('#long-url').value = '';
