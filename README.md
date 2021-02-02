@@ -5,7 +5,7 @@ An online URL shortener.
 ## Table of Contents
 - [Technologies](#Technologies)
 - [Architecture](#Architecture)
-- [Database](#database)
+- [Database Design](#database-design)
 
 ## Technologies
 ### Back-End
@@ -32,7 +32,7 @@ An online URL shortener.
 ## Architecture
 ![shortenurl_architecture](https://stylishbucket.s3-ap-northeast-1.amazonaws.com/shortenurl/shortenurl_architecture.png)
 
-## Database
+## Database Design
 |  urls   |
 |  :----:  |
 | _id  |
