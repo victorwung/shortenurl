@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="colorlib.com">
+    <title>URLHelper </title>
+    <link href="./css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+    <link href="css/index.css" rel="stylesheet" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="js/index.js"></script>
+  </head>
+  <body>
+    <div class="s01">
+      <form>
+        <fieldset>
+          <legend id="main-slogan">URLHelper helps shorten URL </legend>
+        </fieldset>
+        <fieldset>
+          <h2 id="sub-title">Paste the URL to be shortened.</h2>
+        </fieldset>
+        <div class="inner-form">
+          <div class="input-field first-wrap">
+            <input id="long-url" type="text" placeholder="URL" />
+          </div>
+          <div class="input-field third-wrap">
+            <button id="shorten-btn" class="btn-search" type="button" onclick=shortenURL()>Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
