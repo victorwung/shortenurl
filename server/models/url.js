@@ -1,5 +1,5 @@
 require('dotenv').config();
-const {COLLECTION} = process.env;
+const { COLLECTION } = process.env;
 const mongoose = require('mongoose');
 
 const urlSchema = new mongoose.Schema({
@@ -16,7 +16,12 @@ const urlSchema = new mongoose.Schema({
     required: true
   },
   date: { type: String, default: Date.now },
-  click: {
+  shorten_req_cnt: {
+    type: Number,
+    required: true,
+    default: 0
+  },
+  click_cnt: {
     type: Number,
     required: true,
     default: 0

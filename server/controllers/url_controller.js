@@ -23,19 +23,22 @@ const createShortenURL = async (req, res) => {
       let url = await Url.findOne({ long_url });
 
       if (url) {
+        url.shorten_req_cnt++; 
+        await url.save();
         res.json(url);
       } else {
         const short_url = base_url + '/' + url_code;
+        const shorten_req_cnt = 1;
 
         url = new Url({
           long_url,
           short_url,
           url_code,
-          date: new Date()
+          date: new Date(),
+          shorten_req_cnt
         });
 
         await url.save();
-
         res.json(url);
       }
     } catch (err) {
@@ -53,7 +56,7 @@ const getLongURL = async (req, res) => {
     const url = await Url.findOne({ url_code: req.params.code });
 
     if (url) {
-      url.click++; 
+      url.click_cnt++; 
       await url.save();
       return res.redirect(url.long_url);
     } else {

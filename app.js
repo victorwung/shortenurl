@@ -20,7 +20,7 @@ app.use(
 
 app.get('/', (req, res) => {
   res.send('Hello Shorten URL!');
-})
+});
 
 // Page not found
 app.use(function(req, res, next) {
